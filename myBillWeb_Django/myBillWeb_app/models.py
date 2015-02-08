@@ -14,6 +14,9 @@ class Category(models.Model):
  add_date = models.DateField(_('date added'))
  username=models.ForeignKey(User)
  comment = models.CharField(_('Comment'),max_length=200)
+ #create a unique constraint. the category name will be unique per user
+ class Meta:
+    unique_together = (self.username.id, 'categoryName',)
  def __unicode__(self):
    return self.username.username+' '+self.categoryName
  def description(self):
