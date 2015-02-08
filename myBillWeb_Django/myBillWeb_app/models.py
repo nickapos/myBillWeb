@@ -3,7 +3,7 @@ import sys
 import os
 from django.db import models
 from django.contrib.auth.models import User
-sys.setdefaultencoding( "utf-8" )
+from django.utils.translation import ugettext_lazy as _
 # Create your models here.
 
 
@@ -16,7 +16,7 @@ class Category(models.Model):
  comment = models.CharField(_('Comment'),max_length=200)
  #create a unique constraint. the category name will be unique per user
  class Meta:
-    unique_together = (self.username.id, 'categoryName',)
+    unique_together = ('username', 'categoryName',)
  def __unicode__(self):
    return self.username.username+' '+self.categoryName
  def description(self):

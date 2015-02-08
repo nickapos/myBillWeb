@@ -30,7 +30,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-    'debug_toolbar',
     'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,7 +37,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'myBillWeb_Django'
+    'debug_toolbar.apps.DebugToolbarConfig',
+    'myBillWeb_app'
 )
 
 MIDDLEWARE_CLASSES = (

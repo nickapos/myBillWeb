@@ -8,4 +8,4 @@ This project will be an open source implementation of myBill as a web service
 
  In order to start the project development server, use the usual django command
 
-  python manage.py runserver
+    python manage.py runserver
