@@ -2,7 +2,7 @@
 This project will be an open source implementation of myBill as a web service
 
 # Installation instructions
- MybillWeb is an application based on django. It is advised to use virtualenv to create a development environment and use the requirements file to install the necesarry dependencies by using the command
+ MybillWeb is an application based on django. It is advised to use virtualenv to create a development environment and use the requirements file to install the necesarry dependencies by using the following pip command:
 
     pip install -r requirements.txt
 
