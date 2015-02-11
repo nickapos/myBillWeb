@@ -88,19 +88,21 @@ class Record(models.Model):
  company = models.ForeignKey(Company)
  add_date = models.DateField(_('date added'))
  username=models.ForeignKey(User)
- comment = models.CharField(_('Comment'),max_length=200)
+ comment = models.CharField(_('Comment'),max_length=200,default=' ',null=True, blank=True)
+ mybillId = models.IntegerField(_('myBillDesktopId'),default=-1)
+ amount=models.FloatField(_('Amount'),default=0.0)
  checksum = models.CharField(_('Checksum'),max_length=200)
  type_of_record = models.CharField(max_length=2,
                                       choices=TYPE_OF_RECORDS,
                                       default=EXPENSES)
  def __unicode__(self):
-  return "".join([self.company.getName(),' ',self.getDate(),' ',self.comment.encode("utf-8")]) 
+  return "".join([str(self.getAmount()),' - ',self.company.getName(),' ',unicode(self.getDate()).encode("utf-8"),' ',self.comment.encode("utf-8"),' (',self.getTypeOfRecord(),')']) 
  def description(self):
-  return "".join([self.company.getName(),' ',self.getDate(),' ',self.comment.encode("utf-8")]) 
+  return "".join([str(self.getAmount()),' - ',self.company.getName(),' ',unicode(self.getDate()).encode("utf-8"),' ',self.comment.encode("utf-8"),' (',self.getTypeOfRecord(),')']) 
  def getId(self):
   return self.id
  def getName(self):
-  return "".join([self.company.getName(),' ',self.getDate(),' ',self.comment.encode("utf-8")]) 
+  return "".join([str(self.getAmount()),' - ',self.company.getName(),' ',unicode(self.getDate()).encode("utf-8"),' ',self.comment.encode("utf-8"),' (',self.getTypeOfRecord(),')']) 
  def getDate(self):
   return self.add_date
  def getCategory(self):
@@ -109,6 +111,10 @@ class Record(models.Model):
   return self.comment
  def getChecksum(self):
   return self.checksum
+ def getAmount(self):
+  return self.amount
+ def getTypeOfRecord(self):
+  return self.type_of_record
  def checkOwnership(self,id):
   ''' this function will be used by to verify that the incoming owner id is the 
   owner of this specific object
