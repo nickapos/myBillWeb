@@ -14,6 +14,7 @@ class Category(models.Model):
  add_date = models.DateField(_('date added'))
  username=models.ForeignKey(User)
  comment = models.CharField(_('Comment'),max_length=200)
+ checksum = models.CharField(_('Checksum'),max_length=200)
  #create a unique constraint. the category name will be unique per user
  class Meta:
     unique_together = ('username', 'categoryName',)
@@ -29,6 +30,8 @@ class Category(models.Model):
   return self.add_date
  def getComment(self):
   return self.comment
+ def getChecksum(self):
+  return self.checksum
  def checkOwnership(self,id):
   ''' this function will be used by to verify that the incoming owner id is the 
   owner of this specific object
@@ -46,6 +49,7 @@ class Company(models.Model):
  add_date = models.DateField(_('date added'))
  username=models.ForeignKey(User)
  comment = models.CharField(_('Comment'),max_length=200)
+ checksum = models.CharField(_('Checksum'),max_length=200)
  def __unicode__(self):
    return self.username.username+' '+self.companyName
  def description(self):
@@ -60,6 +64,8 @@ class Company(models.Model):
   return self.category
  def getComment(self):
   return self.comment
+ def getChecksum(self):
+  return self.checksum
  def checkOwnership(self,id):
   ''' this function will be used by to verify that the incoming owner id is the 
   owner of this specific object
