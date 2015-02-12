@@ -14,12 +14,20 @@ class CategoryResource(ModelResource):
                 }
 
 class CompanyResource(ModelResource):
-  category=fields.ForeignKey(CategoryResource, 'product',full=True)
+  category=fields.ForeignKey(CategoryResource, 'category',full=True)
   class Meta:
     queryset = Company.objects.all()
     allowed_methods = ['get']
     filtering = {
                 'id':ALL_WITH_RELATIONS,
-                'product':ALL_WITH_RELATIONS,
+                'category':ALL_WITH_RELATIONS,
                 }
 
+class RecordResource(ModelResource):
+  company=fields.ForeignKey(CategoryResource, 'company',full=True)
+  class Meta:
+    queryset = Record.objects.all()
+    allowed_methods = ['get']
+    filtering = {
+                'id':ALL_WITH_RELATIONS,
+                }
