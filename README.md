@@ -1,5 +1,10 @@
 # myBillWeb
-The goal of this project is to enable the user to run a self hosted multi user, myBill compatible cash flow web service.It will provide an import functionality for data exported as csv from existing desktop myBill installations, and expose those details over a REST API. The api can be consumed by any kind of clients, and the original intention is to create an Android client in order to increase the usage flexibility. Eventually the desktop myBill application will be fitted with a synchronization layer, so the user can update both the local desktop myBill database and the web service.
+The goal of this project is to enable the user to run a self hosted multi user, myBill compatible cash flow web service.It will provide an import functionality for data exported as csv from existing desktop myBill installations, and expose those details over a REST API. 
+
+The api can be consumed by any kind of clients, and the original intention is to create an Android client in order to increase the usage flexibility. 
+
+Eventually the desktop myBill application will be fitted with a synchronization layer, so the user can update both the local desktop myBill database and the web service.
+
 The service is quite lightweight and portable since it is using python and pip for its dependencies. I could easily be hosted on a raspberry pi
 
 # Installation instructions
