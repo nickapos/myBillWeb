@@ -22,7 +22,7 @@ The service is quite lightweight and portable since it is using python and pip f
 
 
 # TODO
-* Finish the database schema
+* Finish the database schema - done
 * Add user login
 * Provide the import functionality
 * Finetune the rest api
