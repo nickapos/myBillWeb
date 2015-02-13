@@ -1,6 +1,7 @@
 # -*- coding: utf-8
 import sys
 import os
+from datetime import datetime 
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
@@ -11,7 +12,7 @@ class Category(models.Model):
  '''The class will describe the categories of companies
  '''
  categoryName = models.CharField(_('Category name'),max_length=200)
- add_date = models.DateField(_('date added'))
+ add_date = models.DateField(_('date added'),default=datetime.now, blank=True)
  username=models.ForeignKey(User)
  comment = models.CharField(_('Comment'),max_length=200)
  checksum = models.CharField(_('Checksum'),max_length=200)
@@ -46,7 +47,7 @@ class Company(models.Model):
  '''
  companyName = models.CharField(_('Company name'),max_length=200)
  category = models.ForeignKey(Category)
- add_date = models.DateField(_('date added'))
+ add_date = models.DateField(_('date added'),default=datetime.now, blank=True)
  username=models.ForeignKey(User)
  comment = models.CharField(_('Comment'),max_length=200)
  checksum = models.CharField(_('Checksum'),max_length=200)
@@ -86,7 +87,8 @@ class Record(models.Model):
      (INCOME,'Income')
      )
  company = models.ForeignKey(Company)
- add_date = models.DateField(_('date added'))
+ issue_date = models.DateField(_('issue date'),default=datetime.now, blank=True)
+ pay_date = models.DateField(_('pay date'),default=datetime.now, blank=True)
  username=models.ForeignKey(User)
  comment = models.CharField(_('Comment'),max_length=200,default=' ',null=True, blank=True)
  mybillId = models.IntegerField(_('myBillDesktopId'),default=-1)
@@ -96,15 +98,17 @@ class Record(models.Model):
                                       choices=TYPE_OF_RECORDS,
                                       default=EXPENSES)
  def __unicode__(self):
-  return "".join([str(self.getAmount()),' - ',self.company.getName(),' ',unicode(self.getDate()).encode("utf-8"),' ',self.comment.encode("utf-8"),' (',self.getTypeOfRecord(),')']) 
+  return "".join([str(self.getAmount()),' - ',self.company.getName(),' ',unicode(self.getPayDate()).encode("utf-8"),' ',self.comment.encode("utf-8"),' (',self.getTypeOfRecord(),')']) 
  def description(self):
-  return "".join([str(self.getAmount()),' - ',self.company.getName(),' ',unicode(self.getDate()).encode("utf-8"),' ',self.comment.encode("utf-8"),' (',self.getTypeOfRecord(),')']) 
+  return "".join([str(self.getAmount()),' - ',self.company.getName(),' ',unicode(self.getPayDate()).encode("utf-8"),' ',self.comment.encode("utf-8"),' (',self.getTypeOfRecord(),')']) 
  def getId(self):
   return self.id
  def getName(self):
-  return "".join([str(self.getAmount()),' - ',self.company.getName(),' ',unicode(self.getDate()).encode("utf-8"),' ',self.comment.encode("utf-8"),' (',self.getTypeOfRecord(),')']) 
- def getDate(self):
-  return self.add_date
+  return "".join([str(self.getAmount()),' - ',self.company.getName(),' ',unicode(self.getPayDate()).encode("utf-8"),' ',self.comment.encode("utf-8"),' (',self.getTypeOfRecord(),')']) 
+ def getIssueDate(self):
+  return self.issue_date
+ def getPayDate(self):
+  return self.pay_date
  def getCategory(self):
   return self.category
  def getComment(self):
