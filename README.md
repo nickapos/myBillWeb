@@ -21,8 +21,11 @@ The service is quite lightweight and portable since it is using python and pip f
     python manage.py createsuperuser
 
  After that, you can visit the Django admin interface in:
+
     http://localhost:8000/admin
+
  and the existing REST API at:
+
     http://localhost:8000/api/v1/?format=json
 
 
