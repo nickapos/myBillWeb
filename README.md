@@ -34,7 +34,7 @@ The service is quite lightweight and portable since it is using python and pip f
 
 http://localhost:8000/api/v1/category/schema/?format=json will return:
 
-```
+```json
 {"allowed_detail_http_methods": ["get"], "allowed_list_http_methods": ["get"], "default_format": "application/json", "default_limit": 20, "fields": {"add_date": {"blank": true, "default": "2015-10-25T07:40:04.647741", "help_text": "A date & time as a string. Ex: \"2010-11-10T03:07:43\"", "nullable": false, "readonly": false, "type": "datetime", "unique": false}, "categoryName": {"blank": false, "default": "No default provided.", "help_text": "Unicode string data. Ex: \"Hello World\"", "nullable": false, "readonly": false, "type": "string", "unique": false}, "checksum": {"blank": false, "default": "No default provided.", "help_text": "Unicode string data. Ex: \"Hello World\"", "nullable": false, "readonly": false, "type": "string", "unique": false}, "comment": {"blank": false, "default": "No default provided.", "help_text": "Unicode string data. Ex: \"Hello World\"", "nullable": false, "readonly": false, "type": "string", "unique": false}, "id": {"blank": true, "default": "", "help_text": "Integer data. Ex: 2673", "nullable": false, "readonly": false, "type": "integer", "unique": true}, "resource_uri": {"blank": false, "default": "No default provided.", "help_text": "Unicode string data. Ex: \"Hello World\"", "nullable": false, "readonly": true, "type": "string", "unique": false}}, "filtering": {"id": 1, "user": 2}}
 ```
 
@@ -44,7 +44,7 @@ You can retrieve the available records by visiting
 
 http://localhost:8000/api/v1/category/?format=json
 
-```
+```json
 {"meta": {"limit": 20, "next": null, "offset": 0, "previous": null, "total_count": 1}, "objects": [{"add_date": "2015-02-11", "categoryName": "groceries", "checksum": "ed0f23d23cc3d78ad4e5dbc4ce91597b", "comment": "a test category", "id": 1, "resource_uri": "/api/v1/category/1/"}]}
 ```
 
