@@ -32,7 +32,9 @@ The service is quite lightweight and portable since it is using python and pip f
 
  If you want to use the api all you need to do is to use the usual GET,POST,PUT,DELETE HTTP commands. In order to find out the internal structure of each end point, you cah visit its schema e.g:
 
-http://localhost:8000/api/v1/category/schema/?format=json will return:
+    http://localhost:8000/api/v1/category/schema/?format=json 
+
+will return:
 
 ```json
 {
@@ -108,10 +110,13 @@ http://localhost:8000/api/v1/category/schema/?format=json will return:
 ```
 
 This provides us with all the details we need. What fields are there, if they are mandatory or not, what values they can accept, any constraints etc.
-In order to create a new record all we need to do is to POST to the http://localhost:8000/api/v1/category/ endpoint a properly formatted json file.
-You can retrieve the available records by visiting 
+In order to create a new record all we need to do is to POST to the 
 
-http://localhost:8000/api/v1/category/?format=json
+    http://localhost:8000/api/v1/category/ 
+
+endpoint a properly formatted json file. You can retrieve the available records by visiting 
+
+    http://localhost:8000/api/v1/category/?format=json
 
 ```json
 {
