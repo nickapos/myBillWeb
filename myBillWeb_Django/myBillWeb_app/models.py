@@ -29,6 +29,8 @@ class Category(models.Model):
   return self.categoryName
  def getDate(self):
   return self.add_date
+ def getUsername(self):
+  return self.username
  def getComment(self):
   return self.comment
  def getChecksum(self):
@@ -65,6 +67,8 @@ class Company(models.Model):
   return self.category
  def getComment(self):
   return self.comment
+ def getUsername(self):
+  return self.username
  def getChecksum(self):
   return self.checksum
  def checkOwnership(self,id):
@@ -113,6 +117,8 @@ class Record(models.Model):
   return self.category
  def getComment(self):
   return self.comment
+ def getUsername(self):
+  return self.username
  def getChecksum(self):
   return self.checksum
  def getAmount(self):
