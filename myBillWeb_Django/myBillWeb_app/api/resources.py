@@ -19,6 +19,7 @@ class CategoryResource(ModelResource):
     queryset = Category.objects.all()
     authorization = DjangoAuthorization()
     allowed_methods = ['get', 'post', 'put', 'delete']
+    detail_allowed_methods = ['get', 'post', 'put', 'delete']
     filtering = {
                 'id':ALL,
                 'user':ALL_WITH_RELATIONS
@@ -30,6 +31,7 @@ class CompanyResource(ModelResource):
     queryset = Company.objects.all()
     authorization = DjangoAuthorization()
     allowed_methods = ['get', 'post', 'put', 'delete']
+    detail_allowed_methods = ['get', 'post', 'put', 'delete']
     filtering = {
                 'id':ALL,
                 'category':ALL_WITH_RELATIONS,
@@ -42,6 +44,7 @@ class RecordResource(ModelResource):
     queryset = Record.objects.all()
     authorization = DjangoAuthorization()
     allowed_methods = ['get', 'post', 'put', 'delete']
+    detail_allowed_methods = ['get', 'post', 'put', 'delete']
     filtering = {
                 'id':ALL_WITH_RELATIONS,
                 'company':ALL_WITH_RELATIONS,
