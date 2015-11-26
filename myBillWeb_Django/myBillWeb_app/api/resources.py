@@ -5,13 +5,13 @@ from tastypie.resources import ModelResource,ALL, ALL_WITH_RELATIONS
 from tastypie import fields
 from tastypie.authentication import BasicAuthentication
 from tastypie.authorization import DjangoAuthorization
-from myBillWeb_app.api.CustomAuthorization import CustomAuthorization
+from myBillWeb_app.api.CustomAuthorization import CustomAuthorization,CustomUserAuthorization
 
 
 class UserResource(ModelResource):
   class Meta:
     queryset = User.objects.all()
-    authorization = CustomAuthorization()
+    authorization = CustomUserAuthorization()
     authentication=BasicAuthentication()
     excludes = ['email', 'password', 'is_superuser']
     filtering = { 
