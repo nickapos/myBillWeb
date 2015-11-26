@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from tastypie.api import Api
 from myBillWeb_app.models import Category, Company, Record
-from myBillWeb_app.api.resources import CategoryResource, CompanyResource, RecordResource
+from myBillWeb_app.api.resources import CategoryResource, CompanyResource, RecordResource, UserResource
 from django.contrib import admin
 admin.autodiscover()
 
@@ -10,6 +10,7 @@ v1_api = Api(api_name='v1')
 v1_api.register(CategoryResource())
 v1_api.register(CompanyResource())
 v1_api.register(RecordResource())
+v1_api.register(UserResource())
 
 
 urlpatterns = patterns('',

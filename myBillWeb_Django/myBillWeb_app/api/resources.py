@@ -15,14 +15,14 @@ class UserResource(ModelResource):
     authentication=BasicAuthentication()
     excludes = ['email', 'password', 'is_superuser']
     filtering = { 
-        'username':ALL_WITH_RELATIONS, 
+        'user':ALL_WITH_RELATIONS, 
         }
 
-  def apply_authorization_limits(self, request, object_list):
-    return object_list.filter(user=request.user)
+  def authorized_read_list(self, object_list, bundle):
+    return object_list.filter(id=bundle.request.user.id)
 
 class CategoryResource(ModelResource):
-  user=fields.ForeignKey(UserResource, 'username',null=False)
+  user=fields.ForeignKey(UserResource, 'username',null=False,full=False)
   class Meta:
     queryset = Category.objects.all()
     authorization = DjangoAuthorization()
@@ -31,10 +31,10 @@ class CategoryResource(ModelResource):
     detail_allowed_methods = ['get', 'post', 'put', 'delete']
     filtering = {
                 'id':ALL,
-                'user':ALL_WITH_RELATIONS
+                'username':ALL_WITH_RELATIONS
                 }
-  def apply_authorization_limits(self, request, object_list):
-    return object_list.filter(user=request.user)
+  def authorized_read_list(self, object_list, bundle):
+    return object_list.filter(id=bundle.request.user.id)
 
 class CompanyResource(ModelResource):
   category=fields.ForeignKey(CategoryResource, 'category',full=True)
@@ -50,8 +50,8 @@ class CompanyResource(ModelResource):
                 'category':ALL_WITH_RELATIONS,
                 'user':ALL_WITH_RELATIONS
                 }
-  def apply_authorization_limits(self, request, object_list):
-    return object_list.filter(user=request.user)
+  def authorized_read_list(self, object_list, bundle):
+    return object_list.filter(id=bundle.request.user.id)
 
 class RecordResource(ModelResource):
   company=fields.ForeignKey(CompanyResource, 'company',full=True)
@@ -67,5 +67,5 @@ class RecordResource(ModelResource):
                 'company':ALL_WITH_RELATIONS,
                 'user':ALL_WITH_RELATIONS
                 }
-  def apply_authorization_limits(self, request, object_list):
-    return object_list.filter(user=request.user)
+  def authorized_read_list(self, object_list, bundle):
+    return object_list.filter(id=bundle.request.user.id)
