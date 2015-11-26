@@ -6,26 +6,26 @@ from tastypie.resources import ModelResource,ALL, ALL_WITH_RELATIONS
 from tastypie import fields
 from tastypie.authentication import BasicAuthentication
 from tastypie.authorization import DjangoAuthorization
+from myBillWeb_app.api.CustomAuthorization import CustomAuthorization
 
 
 class UserResource(ModelResource):
   class Meta:
     queryset = User.objects.all()
-    authorization = DjangoAuthorization()
+    authorization = CustomAuthorization()
     authentication=BasicAuthentication()
     excludes = ['email', 'password', 'is_superuser']
     filtering = { 
         'user':ALL_WITH_RELATIONS, 
         }
 
-  def apply_authorization_limits(self, request, object_list):
-    return object_list.filter(user=request.user)
+
 
 class CategoryResource(ModelResource):
   user=fields.ForeignKey(UserResource, 'username',null=False,full=False)
   class Meta:
     queryset = Category.objects.all()
-    authorization = DjangoAuthorization()
+    authorization = CustomAuthorization()
     authentication=BasicAuthentication()
     allowed_methods = ['get', 'post', 'put', 'delete']
     detail_allowed_methods = ['get', 'post', 'put', 'delete']
@@ -33,8 +33,6 @@ class CategoryResource(ModelResource):
                 'id':ALL,
                 'username':ALL_WITH_RELATIONS
                 }
-  def apply_authorization_limits(self, request, object_list):
-    return object_list.filter(user=request.user)
 
 class CompanyResource(ModelResource):
   category=fields.ForeignKey(CategoryResource, 'category',full=True)
@@ -50,8 +48,6 @@ class CompanyResource(ModelResource):
                 'category':ALL_WITH_RELATIONS,
                 'user':ALL_WITH_RELATIONS
                 }
-  def apply_authorization_limits(self, request, object_list):
-    return object_list.filter(user=request.user)
 
 class RecordResource(ModelResource):
   company=fields.ForeignKey(CompanyResource, 'company',full=True)
@@ -67,5 +63,3 @@ class RecordResource(ModelResource):
                 'company':ALL_WITH_RELATIONS,
                 'user':ALL_WITH_RELATIONS
                 }
-  def authorized_read_list(self, object_list, bundle):
-    return object_list.filter(id=bundle.request.user.id)
