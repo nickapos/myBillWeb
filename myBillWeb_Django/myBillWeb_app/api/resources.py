@@ -1,5 +1,4 @@
 from django.contrib.auth.models import User
-from tastypie.authorization import DjangoAuthorization
 from tastypie.resources import ModelResource,Resource
 from myBillWeb_app.models import Category, Company, Record
 from tastypie.resources import ModelResource,ALL, ALL_WITH_RELATIONS
@@ -39,7 +38,7 @@ class CompanyResource(ModelResource):
   user=fields.ForeignKey(UserResource, 'username',null=False)
   class Meta:
     queryset = Company.objects.all()
-    authorization = DjangoAuthorization()
+    authorization = CustomAuthorization()
     authentication=BasicAuthentication()
     allowed_methods = ['get', 'post', 'put', 'delete']
     detail_allowed_methods = ['get', 'post', 'put', 'delete']
@@ -54,7 +53,7 @@ class RecordResource(ModelResource):
   user=fields.ForeignKey(UserResource, 'username',null=False)
   class Meta:
     queryset = Record.objects.all()
-    authorization = DjangoAuthorization()
+    authorization = CustomAuthorization()
     authentication=BasicAuthentication()
     allowed_methods = ['get', 'post', 'put', 'delete']
     detail_allowed_methods = ['get', 'post', 'put', 'delete']

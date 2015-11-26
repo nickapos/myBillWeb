@@ -6,39 +6,39 @@ class CustomAuthorization(Authorization):
     # This assumes a ``QuerySet`` from ``ModelResource``.
     return object_list.filter(username=bundle.request.user)
 
-  def read_detail(self, object_list, bundle):
-    print bundle.obj.username.username
-    print bundle.request.user
-    # Is the requested object owned by the user?
-    if bundle.obj.username.username == bundle.request.user:
-      print "Ha"
-      return bundle.obj.username
-    else:
-      raise Unauthorized("Sorry, not authorized.")
+ #def read_detail(self, object_list, bundle):
+ #  print bundle.obj.username.username
+ #  print bundle.request.user
+ #  # Is the requested object owned by the user?
+ #  if bundle.obj.username.username == bundle.request.user:
+ #    print "Ha"
+ #    return bundle.obj
+ #  else:
+ #    raise Unauthorized("Sorry, not authorized.")
 
-  def create_list(self, object_list, bundle):
-    # Assuming their auto-assigned to ``user``.
-    return object_list
+ #def create_list(self, object_list, bundle):
+ #  # Assuming their auto-assigned to ``user``.
+ #  return object_list
 
-  def create_detail(self, object_list, bundle):
-    return bundle.obj.username == bundle.request.user
+ #def create_detail(self, object_list, bundle):
+ #  return bundle.obj.username == bundle.request.user
 
-  def update_list(self, object_list, bundle):
-    allowed = []
+ #def update_list(self, object_list, bundle):
+ #  allowed = []
 
-    # Since they may not all be saved, iterate over them.
-    for obj in object_list:
-        if obj.username == bundle.request.user:
-            allowed.append(obj)
+ #  # Since they may not all be saved, iterate over them.
+ #  for obj in object_list:
+ #      if obj.username == bundle.request.user:
+ #          allowed.append(obj)
 
-    return allowed
+ #  return allowed
 
-  def update_detail(self, object_list, bundle):
-    return bundle.obj.username == bundle.request.user
+ #def update_detail(self, object_list, bundle):
+ #  return bundle.obj.username == bundle.request.user
 
-  def delete_list(self, object_list, bundle):
-    # Sorry user, no deletes for you!
-    raise Unauthorized("Sorry, no deletes.")
+ #def delete_list(self, object_list, bundle):
+ #  # Sorry user, no deletes for you!
+ #  raise Unauthorized("Sorry, no deletes.")
 
-  def delete_detail(self, object_list, bundle):
-    raise Unauthorized("Sorry, no deletes.")
+ #def delete_detail(self, object_list, bundle):
+ #  raise Unauthorized("Sorry, no deletes.")
