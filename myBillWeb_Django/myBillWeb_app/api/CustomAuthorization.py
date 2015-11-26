@@ -15,12 +15,12 @@ class CustomAuthorization(Authorization):
    else:
      raise Unauthorized("Sorry, not authorized.")
 
- #def create_list(self, object_list, bundle):
- #  # Assuming their auto-assigned to ``user``.
- #  return object_list
+  def create_list(self, object_list, bundle):
+   # Assuming their auto-assigned to ``user``.
+   return object_list
 
- #def create_detail(self, object_list, bundle):
- #  return bundle.obj.username == bundle.request.user
+  def create_detail(self, object_list, bundle):
+   return bundle.obj.username == bundle.request.user
 
  #def update_list(self, object_list, bundle):
  #  allowed = []
@@ -54,15 +54,15 @@ class CustomUserAuthorization(Authorization):
    else:
      raise Unauthorized("Sorry, not authorized.")
 
- #def create_list(self, object_list, bundle):
- #  # Assuming their auto-assigned to ``user``.
- #  return object_list
+  def create_list(self, object_list, bundle):
+   # Assuming their auto-assigned to ``user``.
+   return object_list
 
- #def create_detail(self, object_list, bundle):
- #  return bundle.obj.username == bundle.request.user
+  def create_detail(self, object_list, bundle):
+   return bundle.obj == bundle.request.user
 
  #def update_list(self, object_list, bundle):
- #  allowed = []
+ # allowed = []
 
  #  # Since they may not all be saved, iterate over them.
  #  for obj in object_list:
